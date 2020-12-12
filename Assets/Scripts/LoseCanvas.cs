@@ -1,15 +1,9 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-
-
 public class LoseCanvas : MonoBehaviour
 {
     public GameObject player;
-
     private float timer = 1f;
- 
-    
     [SerializeField] GameObject loseCan;
     [SerializeField] GameObject PlayCan;
     private GameObject currentScreen;
@@ -22,15 +16,15 @@ public class LoseCanvas : MonoBehaviour
     }
     private void Update()
     {
-        if(player == null)
+        if (player == null)
         {
             //после смерти игрока отсчитываем одну секунду и включаем экран смерти
             timer -= Time.deltaTime;
             Debug.Log("1");
         }
-        if(timer<=0)
-        {         
-            ChangeState(loseCan );
+        if (timer <= 0)
+        {
+            ChangeState(loseCan);
             Debug.Log("2");
             Time.timeScale = 0;
         }
@@ -47,7 +41,6 @@ public class LoseCanvas : MonoBehaviour
         SceneManager.LoadScene(0);
 
     }
-
     // перезагрузка уровня
     public void OnClickRestart()
     {
@@ -63,7 +56,4 @@ public class LoseCanvas : MonoBehaviour
             Debug.Log("5");
         }
     }
-
-
-    
 }

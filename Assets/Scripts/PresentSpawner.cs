@@ -11,12 +11,11 @@ public class PresentSpawner : MonoBehaviour
     private float timer = 5f;//время до первого вылета врага
     private const float TIMER_TO_RSPWN = 12f;//время между спавнами следущих врагов
     private Vector2 ToWhere;//конечная точка для перемещения врага
-
     public GameObject Enemy;//префаб врага
     private GameObject CurrentEnemy;
     // рандомный выбор точки спавна подарка
     private float[][] ranges = new float[14][];//массив границ для рандома
-    private float[][] range14 = new float[11][];
+    private float[][] range14 = new float[11][];//массив координат для спавна между стенами
 
     private void Start()
     {
@@ -47,15 +46,14 @@ public class PresentSpawner : MonoBehaviour
         range14[8] = new float[2] { 7.95f, -2.22f };
         range14[9] = new float[2] { -6f, -5f };
         range14[10] = new float[2] { 6.62f, -5f };
-
     }
     //выбор места и непосредственный спавн врагов
     private void Spawn()
     {
         int randomPos = UnityEngine.Random.Range(0, 15);
-        if(randomPos<14)
+        if (randomPos < 14)
         {
-            position = new Vector2(Random.Range(ranges[randomPos][0],ranges[randomPos][1]), Random.Range(ranges[randomPos][2],ranges[randomPos][3]));
+            position = new Vector2(Random.Range(ranges[randomPos][0], ranges[randomPos][1]), Random.Range(ranges[randomPos][2], ranges[randomPos][3]));
         }
         else
         {
@@ -64,7 +62,6 @@ public class PresentSpawner : MonoBehaviour
         }
         Debug.Log("spwn");
         currentPres = Instantiate(present, position, Quaternion.identity);
-
     }
 
     void Update()

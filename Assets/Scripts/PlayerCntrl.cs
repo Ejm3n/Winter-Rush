@@ -5,7 +5,6 @@ public class PlayerCntrl : MonoBehaviour
 {
     public float ForcePower;//сила прыжка оленя
     private int PresentsCounter;//счетчик подарков
-
     private bool FaceRight = true;//направление взгляда оленя
     private bool Started; //проверка начинал ли игру игрок
     public GameObject Explosion; //подбор подарка и взрыв при помощи системы частиц
@@ -17,18 +16,17 @@ public class PlayerCntrl : MonoBehaviour
     public AudioSource LoseSound; // ссылка на звук смерти игрока
     public Image PauseImage; // просто текст ПАУЗА если поставили паузу
     private bool Paused = false;
-    
+
     void Start()
     {
         PresentsCounter = 0;
         Time.timeScale = 0;
     }
 
-    
     void Update()
     {
         //проверка можно ли поставить паузу либо ее снять
-        if (Input.GetKeyDown(KeyCode.Escape) && !Paused && Started) 
+        if (Input.GetKeyDown(KeyCode.Escape) && !Paused && Started)
         {
 
             PauseImage.enabled = true;
@@ -50,7 +48,6 @@ public class PlayerCntrl : MonoBehaviour
             GetComponent<Rigidbody2D>().AddForce(Vector2.up * ForcePower, ForceMode2D.Force);
             Started = true;
         }
-
         if (Input.GetKeyDown(KeyCode.D) || (Input.GetKeyDown(KeyCode.RightArrow)))
         {
             GetComponent<Rigidbody2D>().AddForce((Vector2.up + Vector2.right) * (ForcePower - 10), ForceMode2D.Force);
@@ -75,7 +72,6 @@ public class PlayerCntrl : MonoBehaviour
             Destroy(StartingText);
             Time.timeScale = 1;
         }
-
     }
     //изменить направление взгляда оленя
     void flip()
@@ -92,7 +88,7 @@ public class PlayerCntrl : MonoBehaviour
             TakePresent.Play();
             Destroy(collision.gameObject);
             PresentsCounter++;
-            GetComponent<Rigidbody2D>().mass += 0.01f; 
+            GetComponent<Rigidbody2D>().mass += 0.01f;
             PresentsCount.text = PresentsCounter.ToString();
         }
         if (collision.gameObject.tag == "Wall")
@@ -107,10 +103,9 @@ public class PlayerCntrl : MonoBehaviour
     //запись рекорда
     private void HighScore()
     {
-        if(PlayerPrefs.GetInt ("Score") <= PresentsCounter)
+        if (PlayerPrefs.GetInt("Score") <= PresentsCounter)
         {
             PlayerPrefs.SetInt("Score", PresentsCounter);
         }
     }
-
 }

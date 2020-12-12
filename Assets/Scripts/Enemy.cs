@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-
 public class Enemy : MonoBehaviour
 {
     //обработка столкновения врага с подарком
@@ -7,7 +6,7 @@ public class Enemy : MonoBehaviour
     public AudioSource EnemyTakesPresent;
 
     private void OnCollisionEnter2D(Collision2D collision)
-    {    
+    {
         if (collision.gameObject.tag == "Present")
         {
             var exp = Instantiate(Explosion, collision.transform.position, Quaternion.identity);
