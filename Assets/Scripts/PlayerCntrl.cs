@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System;
-using System.IO;
-using System.IO.Compression;
-using System.Linq;
+
 public class PlayerCntrl : MonoBehaviour
 {
     public float ForcePower;//сила прыжка оленя

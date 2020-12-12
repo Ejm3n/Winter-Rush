@@ -55,13 +55,13 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Enemy.cs" />
+    <Compile Include="Assets\Scripts\HighScore.cs" />
     <Compile Include="Assets\Scripts\Portals.cs" />
     <Compile Include="Assets\Scripts\PlayerCntrl.cs" />
-    <Compile Include="Assets\Scripts\PresentSpawner.cs" />
-    <Compile Include="Assets\Scripts\LoseCanvas.cs" />
-    <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\Menu.cs" />
-    <Compile Include="Assets\Scripts\HighScore.cs" />
+    <Compile Include="Assets\Scripts\LoseCanvas.cs" />
+    <Compile Include="Assets\Scripts\PresentSpawner.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

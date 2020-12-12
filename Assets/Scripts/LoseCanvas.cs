@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+
 
 public class LoseCanvas : MonoBehaviour
 {
@@ -24,6 +24,7 @@ public class LoseCanvas : MonoBehaviour
     {
         if(player == null)
         {
+            //после смерти игрока отсчитываем одну секунду и включаем экран смерти
             timer -= Time.deltaTime;
             Debug.Log("1");
         }
@@ -33,8 +34,13 @@ public class LoseCanvas : MonoBehaviour
             Debug.Log("2");
             Time.timeScale = 0;
         }
-        
+        if ((currentScreen == loseCan) && (Input.GetKeyDown(KeyCode.Return)))
+        {
+            //рестарт игры можно сделать нажав Enter
+            OnClickRestart();
+        }
     }
+    //переход на сцену главного меню
     public void OnClickToMainMenu()
     {
 
@@ -42,7 +48,7 @@ public class LoseCanvas : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+    // перезагрузка уровня
     public void OnClickRestart()
     {
         SceneManager.LoadScene("SampleScene");
