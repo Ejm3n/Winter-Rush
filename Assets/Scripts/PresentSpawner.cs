@@ -16,7 +16,7 @@ public class PresentSpawner : MonoBehaviour
 
     public GameObject Enemy;
     private GameObject CurrentEnemy;
-    // Start is called before the first frame update
+    // рандомный выбор точки спавна подарка
     private void Spawn()
     {
         int randomPos = UnityEngine.Random.Range(1, 16);

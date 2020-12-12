@@ -6,32 +6,32 @@ using System.IO.Compression;
 using System.Linq;
 public class PlayerCntrl : MonoBehaviour
 {
-    public float ForcePower;
-    private int PresentsCounter;
+    public float ForcePower;//сила прыжка оленя
+    private int PresentsCounter;//счетчик подарков
 
-    private bool FaceRight = true;
-    private bool Started;
-    public GameObject Explosion;
-    public GameObject Die;
-    public Text PresentsCount;
-    public Text StartingText;
-    public Text FinalScore;
-    public AudioSource TakePresent;
-    public AudioSource LoseSound;
-    public Image PauseImage;
+    private bool FaceRight = true;//направление взгляда оленя
+    private bool Started; //проверка начинал ли игру игрок
+    public GameObject Explosion; //подбор подарка и взрыв при помощи системы частиц
+    public GameObject Die; //взрыв при помощи системы частиц в случае смерти
+    public Text PresentsCount; //передача количества подобраных подарков в интерфейс
+    public Text StartingText; //стартовый текст удаляющийся после старта игры
+    public Text FinalScore;// итоговый счет передающийся во второй канвас
+    public AudioSource TakePresent; // ссылка на звук подбора подарка
+    public AudioSource LoseSound; // ссылка на звук смерти игрока
+    public Image PauseImage; // просто текст ПАУЗА если поставили паузу
     private bool Paused = false;
-    // Start is called before the first frame update
+    
     void Start()
     {
-
         PresentsCounter = 0;
         Time.timeScale = 0;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !Paused && Started)
+        //проверка можно ли поставить паузу либо ее снять
+        if (Input.GetKeyDown(KeyCode.Escape) && !Paused && Started) 
         {
 
             PauseImage.enabled = true;
@@ -47,6 +47,7 @@ public class PlayerCntrl : MonoBehaviour
             Paused = false;
             Debug.Log("4");
         }
+        //управление героем
         if (Input.GetKeyDown(KeyCode.W) || (Input.GetKeyDown(KeyCode.UpArrow)))
         {
             GetComponent<Rigidbody2D>().AddForce(Vector2.up * ForcePower, ForceMode2D.Force);
@@ -71,6 +72,7 @@ public class PlayerCntrl : MonoBehaviour
                 flip();
             }
         }
+        //проверка на начало игры
         if (Started && !Paused)
         {
             Destroy(StartingText);
@@ -78,12 +80,13 @@ public class PlayerCntrl : MonoBehaviour
         }
 
     }
+    //изменить направление взгляда оленя
     void flip()
     {
         GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX;
         FaceRight = !FaceRight;
     }
-
+    //проверка с чем столкнулся игрок
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Present")
@@ -104,6 +107,7 @@ public class PlayerCntrl : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    //запись рекорда
     private void HighScore()
     {
         if(PlayerPrefs.GetInt ("Score") <= PresentsCounter)

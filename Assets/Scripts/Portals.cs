@@ -4,19 +4,8 @@ using UnityEngine;
 
 public class Portals : MonoBehaviour
 {
-    //[SerializeField] private GameObject Player;
     public float TpTo;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
+    //портал переносит объект вниз или вверх при соприкосновении игрока с ним
     private void OnTriggerEnter2D(Collider2D collision)
     {
         collision.transform.position = new Vector2(collision.transform.position.x,collision.transform.position.y+TpTo) ;
